@@ -25,6 +25,7 @@ export async function create(request: FastifyRequest, reply: FastifyReply) {
       })
     }
 
+    console.error(error)
     return reply.status(500).send()
   }
 }
@@ -35,6 +36,7 @@ export async function list(request: FastifyRequest, reply: FastifyReply) {
 
    return reply.send(items)
  } catch (error) {
+    console.error(error)
    return reply.status(500).send()
  }
 }

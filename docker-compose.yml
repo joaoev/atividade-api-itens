@@ -1,0 +1,38 @@
+name: atividade-gc-api
+
+services:
+  api:
+    container_name: api
+    build:
+      context: .
+    ports:
+      - "3333:3333"
+    environment:
+      - NODE_ENV=production
+      - DATABASE_URL=${DATABASE_URL}
+    depends_on:
+      - database
+    networks:
+      - network-api
+
+  database:
+    image: bitnami/postgresql:latest
+    container_name: database
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=mydb
+    volumes:
+      - data-api:/var/lib/postgresql/data
+    networks:
+      - network-api
+
+volumes:
+  data-api:
+    driver: local
+
+networks:
+  network-api:
+    driver: bridge

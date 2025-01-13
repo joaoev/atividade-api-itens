@@ -32,3 +32,9 @@ A aplicação deve salvar os dados no banco de dados relacional Postgres.
 ## Uso
 
 Acesse `http://localhost:3333` no navegador para visualizar a aplicação.
+
+#### Obs.: Caso a api retorne o erro 500, tente rodar esse comando no container da api
+1. Comando:
+    ```sh
+    npx prisma migrate dev
+    ```
